@@ -8,14 +8,18 @@ import { Header } from '../components/Header';
 import { InfiniteHits } from '../components/InfiniteHits';
 import { InstantSearch } from '../components/InstantSearch';
 import { ProductActions } from '../components/ProductActions';
+import { useScrollDirection } from "../hooks/useScrollDirection";
 
 export function Store() {
+  const scrollDirection = useScrollDirection();
+  const topClass = scrollDirection === 'down' ? 'top-0' : 'top-16';
+
   return (
     <InstantSearch>
       <div className="max-w-6xl mx-auto mb-10">
         <Header></Header>
 
-        <div className="sticky top-0 z-10 flex items-center justify-between h-16 px-6 bg-white">
+        <div className={`sticky ${topClass} transition-all duration-500 z-10 flex items-center justify-between h-16 px-6 bg-white`}>
           <div id="category-title" className="w-40">
             <Breadcrumb
               attributes={[
